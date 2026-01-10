@@ -99,6 +99,13 @@ def make_pm25_data(years, gios_url_ids, gios_pm25_file, clean_info, outfile):
 
     # midnight fix
     cleaned = {y: midnight(df) for y, df in cleaned.items()}
+    
+    # making sure that after midnight fix cleaned data contains only chosen years
+    cleaned = {
+    y: df[df["datetime"].dt.year.isin(years)]
+    for y, df in cleaned.items()
+    }
+
 
     # station code updates
     cleaned = {y: update_stations(df, meta) for y, df in cleaned.items()}
