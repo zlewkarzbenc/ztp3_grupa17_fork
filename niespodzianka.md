@@ -1,7 +1,7 @@
 ## Udało się przemycić niespodziankę!
 Funkcja `wojew_over_treshold()` oblicza średnią pomiarów PM2.5 w danym roku w danym województwie. Nie powiedziałem jednak (i nie zostało to podniesione w procesie rewizji kodu) w jaki sposób średnia ta jest liczona...
 
-Napisana przeze mnie funkcja w module `stats.py` uśrednia pomiary najpierw wewnątrz stacji, a dopiero potem w obrębie województwa. Jest to niepoprawne podejście - niektórym stacjom brakuje pomiarów co oznacza, że poszczególne pomiary nie są ważnone równomiernie w ostatecznej średniej.
+Napisana przeze mnie funkcja w module `stats.py` uśrednia pomiary najpierw wewnątrz stacji, a dopiero potem w obrębie województwa. Niestety w danych GIOS występują brakujące wartości co oznacza, że niektóre stacje mają danej doby mniej pomiarów niż inne. Przez to, poszczególne pomiary nie są traktowane równocennie przy uśrednianiu.
 
 Fragment niepoprawnej wersji `wojew_over_treshold()`:
 
